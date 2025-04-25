@@ -37,6 +37,10 @@ jobs:
       - name: Build release APK
         run: ./gradlew assembleRelease
 
+      # Add a step to verify the APK exists
+      - name: Verify APK exists
+        run: ls -la android/app/build/outputs/apk/release/
+
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
