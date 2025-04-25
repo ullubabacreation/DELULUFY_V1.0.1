@@ -16,7 +16,7 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.5' # or your current Flutter version
+          flutter-version: '3.19.5' # or your desired version
 
       - name: Install dependencies
         run: flutter pub get
@@ -25,7 +25,7 @@ jobs:
         run: flutter build apk --debug
 
       - name: Upload unsigned APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: unsigned-apk
           path: build/app/outputs/flutter-apk/app-debug.apk
