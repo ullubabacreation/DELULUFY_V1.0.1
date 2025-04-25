@@ -28,18 +28,30 @@ android {
     }
 
     signingConfigs {
-        getByName("debug") // Keep debug config as is
+        getByName("debug")
+
+        // Optional: Safe handling for future use, but not used now
         create("release") {
-            storeFile = file(keystoreProperties["storeFile"] as String)
-            storePassword = keystoreProperties["storePassword"] as String
-            keyAlias = keystoreProperties["keyAlias"] as String
-            keyPassword = keystoreProperties["keyPassword"] as String
+            val storeFilePath = keystoreProperties["storeFile"]?.toString()
+            val storePassword = keystoreProperties["storePassword"]?.toString()
+            val keyAlias = keystoreProperties["keyAlias"]?.toString()
+            val keyPassword = keystoreProperties["keyPassword"]?.toString()
+
+            if (storeFilePath != null && storePassword != null && keyAlias != null && keyPassword != null) {
+                storeFile = file(storeFilePath)
+                this.storePassword = storePassword
+                this.keyAlias = keyAlias
+                this.keyPassword = keyPassword
+            } else {
+                println("⚠️ Warning: Keystore properties are missing. Skipping release signing.")
+            }
         }
     }
 
     buildTypes {
         getByName("release") {
-            signingConfig = signingConfigs.getByName("release")
+            // 🔥 DO NOT sign for now
+            // signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
