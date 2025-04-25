@@ -1,0 +1,15 @@
+{
+    "accept": "*/*",
+    "accept-encoding": "gzip, deflate",
+    "accept-language": "en-US,en;q=0.9",
+    "authorization": "SAPISIDHASH 1745481273_89db7563e79f83d68fc43d16957e22c87b98a948_u",
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "cookie": "PREF=f4=4000000&f6=40000000&tz=Asia.Calcutta&f7=100; LOGIN_INFO=AFmmF2swRgIhALvx2OYPjBZfwxQE3rR8GlGungJ80ywWrdlZDWk9YUxNAiEAwi5KXekEKsfHKX2zlVkJKo42ghGN99omyHTLwjj3X08:QUQ3MjNmeW10U3Y5Nm5CVlNHeXIxTGdTTjg2cUVvT0RvOWUyckFBN0NhdDZtcHk0Q1hTaEFSVUQtZnZ4b0MzdzFkeWNiei13MFhiNGFOb1lNMEpBblN0WEhJeWhjcUZVNll6NmhLVGU4WWctN0h2MkJpTlBjanBsVHc5Mi10RGZmMmkwcXEwbWlfel9DaHVud3FiSmVoWjZOUXFrQjM5OTRB; VISITOR_INFO1_LIVE=Uxztjq9oGgs; VISITOR_PRIVACY_METADATA=CgJJThIEGgAgSA%3D%3D; HSID=Anu-NccjcUxOR4S0L; SSID=AgQ3GA-_x1yJCztVg; APISID=LMRuKidGhjvawxzI/A73PCJ62JMuhaUCsE; SAPISID=gr4YSG1FtxXIoGed/A21bkiV8G3bWwkw5K; __Secure-1PAPISID=gr4YSG1FtxXIoGed/A21bkiV8G3bWwkw5K; __Secure-3PAPISID=gr4YSG1FtxXIoGed/A21bkiV8G3bWwkw5K; SID=g.a000wAjaHTixOv46WfjMSTTMQ_evCS9PnZRfHj9x1UMtrp11un3apZ1xix6ZTWmJK8EFcFOE3wACgYKAYsSARQSFQHGX2Mi1RY5DJI6acHGJ_ZNkVYPihoVAUF8yKpLYlcUooGFONIWlbSx_6MY0076; __Secure-1PSID=g.a000wAjaHTixOv46WfjMSTTMQ_evCS9PnZRfHj9x1UMtrp11un3aoR60Two_hzLytepBHbvYYgACgYKASUSARQSFQHGX2MiSTOjVJ_lePBEGE06QNH0ExoVAUF8yKqbeGOgzMBbUc9gRmXDm2Bz0076; __Secure-3PSID=g.a000wAjaHTixOv46WfjMSTTMQ_evCS9PnZRfHj9x1UMtrp11un3aM1avUl1HKLAnFpRl2oVpgwACgYKAd8SARQSFQHGX2MiOoJljfb7FwUH3eHiFbBq2RoVAUF8yKofad3zhNKohGZZo1dFBYIQ0076; YSC=gonNY7kHalc; __Secure-ROLLOUT_TOKEN=CL2Yo8yVvrfwXRC49YDy1-GMAxjw-uWMjvCMAw%3D%3D; _gcl_au=1.1.2068809431.1745478562; __Secure-1PSIDTS=sidts-CjEB7pHptYBNmu-9ZRVcBBQEvcC2_iax7_usCWa029nSQ3uRfeoL5PYEkOoXAJXmc6xKEAA; __Secure-3PSIDTS=sidts-CjEB7pHptYBNmu-9ZRVcBBQEvcC2_iax7_usCWa029nSQ3uRfeoL5PYEkOoXAJXmc6xKEAA; SIDCC=AKEyXzUCaVvkECCTT0x3cM1zkUwOtPdOQ1Bk7ct1LR6cuxnREg0p-etzcmwc625g55pHfE8EQw; __Secure-1PSIDCC=AKEyXzV57LdIxLDLw2q3QFOoLNZO7QkBFODHch60rWwV_tfGFw09Lg3bzbvsDHg_qpCCXbXPWnc; __Secure-3PSIDCC=AKEyXzVv7mApZNou5I0soajuxRrIysWVkeW9Tt03z2EvNJ8oyEffiVf25rgJzYRxvtFehn9wtEk",
+    "origin": "https://music.youtube.com",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0",
+    "x-goog-authuser": "0",
+    "x-origin": "https://music.youtube.com",
+    "x-youtube-client-name": "67",
+    "x-youtube-client-version": "1.20250421.01.00"
+}

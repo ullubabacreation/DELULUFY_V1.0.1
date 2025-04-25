@@ -1,23 +1,42 @@
 name: delulufy_v1
 description: "A new Flutter project."
-publish_to: 'none' # This is a private project
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.7.2
+  sdk: ">=3.7.2 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
-  animated_text_kit: ^4.2.2
-  audioplayers: ^5.2.1
-  google_fonts: ^4.0.4
-  http: ^0.13.6
-  youtube_explode_dart: ^1.12.0
-  cached_network_image: ^3.3.1
-  path: ^1.9.0
 
+  # UI
+  cupertino_icons: ^1.0.8
+  google_fonts: ^4.0.4
+  cached_network_image: ^3.3.1
+  animated_text_kit: ^4.2.2
+  simple_animations: ^5.0.0
+  shared_preferences: ^2.2.2
+  
+
+  # Audio & YouTube
+  audioplayers: ^5.2.1
+  just_audio: ^0.9.36
+  audio_service: ^0.18.10
+  youtube_explode_dart: ^2.0.0
+  flutter_inappwebview: ^6.0.0-beta.25
+  logger: ^2.0.2
+  audio_session: ^0.1.14
+  
+  # Network
+  http: 1.1.0
+  path: ^1.9.0
+  intl: ^0.19.0
+  just_waveform: ^0.0.7
+  path_provider: ^2.1.2
+  provider: ^6.1.1
+  flutter_animate: ^4.2.0
+   
 dev_dependencies:
   flutter_test:
     sdk: flutter

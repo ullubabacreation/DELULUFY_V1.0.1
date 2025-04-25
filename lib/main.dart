@@ -2,32 +2,60 @@ import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'dart:async';
-import 'home_screen.dart'; // Make sure this exists and is correct
+import 'package:provider/provider.dart';
+import 'package:delulufy_v1/providers/theme_provider.dart';
+import 'package:delulufy_v1/utils/shared_prefs.dart';
+import 'home_screen.dart';
+import 'terms_screen.dart';
 
-void main() {
-  runApp(const DelulufyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  bool access = await SharedPrefs.getAccessGranted();
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: DelulufyApp(accessGranted: access),
+    ),
+  );
 }
 
 class DelulufyApp extends StatelessWidget {
-  const DelulufyApp({super.key});
+  final bool accessGranted;
+
+  const DelulufyApp({super.key, required this.accessGranted});
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      themeMode: themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
       theme: ThemeData(
+        brightness: Brightness.light,
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
         textTheme: GoogleFonts.ubuntuMonoTextTheme(
-          Theme.of(context).textTheme,
+          ThemeData.light().textTheme,
         ),
       ),
-      home: const SplashScreen(),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.black,
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
+        textTheme: GoogleFonts.ubuntuMonoTextTheme(
+          ThemeData.dark().textTheme,
+        ),
+      ),
+      home: SplashScreen(accessGranted: accessGranted),
     );
   }
 }
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  final bool accessGranted;
+
+  const SplashScreen({super.key, required this.accessGranted});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -40,22 +68,24 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     _playIntroSound();
-    _navigateToHome();
+    _navigateAfterSplash();
   }
 
   Future<void> _playIntroSound() async {
     await _audioPlayer.play(AssetSource('sounds/intro.mp3'));
   }
 
-  void _navigateToHome() {
-    Future.delayed(const Duration(seconds: 8), () {
-      if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
-        );
-      }
-    });
+  void _navigateAfterSplash() async {
+    await Future.delayed(const Duration(seconds: 8));
+    if (mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+              widget.accessGranted ? const HomeScreen() : const TermsScreen(),
+        ),
+      );
+    }
   }
 
   @override
@@ -70,10 +100,8 @@ class _SplashScreenState extends State<SplashScreen> {
             fit: BoxFit.cover,
             errorBuilder: (context, error, stackTrace) {
               return const Center(
-                child: Text(
-                  'Splash image not found',
-                  style: TextStyle(color: Colors.red),
-                ),
+                child: Text('Splash image not found',
+                    style: TextStyle(color: Colors.red)),
               );
             },
           ),
@@ -103,10 +131,8 @@ class _SplashScreenState extends State<SplashScreen> {
                         width: 150,
                         height: 150,
                         errorBuilder: (context, error, stackTrace) {
-                          return const Text(
-                            'Logo not found',
-                            style: TextStyle(color: Colors.red),
-                          );
+                          return const Text('Logo not found',
+                              style: TextStyle(color: Colors.red));
                         },
                       ),
                     ),
@@ -127,6 +153,19 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                 ],
                 isRepeatingAnimation: false,
+              ),
+              const SizedBox(height: 20),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const TermsScreen()),
+                  );
+                },
+                child: const Text(
+                  'View Terms & Conditions',
+                  style: TextStyle(color: Colors.white70, fontSize: 13),
+                ),
               ),
             ],
           ),
