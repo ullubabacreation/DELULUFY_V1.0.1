@@ -1,44 +1,31 @@
-name: Build Signed APK
+name: Build Unsigned APK
 
 on:
   push:
-    branches:
-      - main  # or 'master' if that's your main branch
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
-    name: Build APK
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Java
-        uses: actions/setup-java@v3
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          flutter-version: '3.19.5' # or your current Flutter version
 
-      - name: Decode keystore
-        run: |
-          echo "${{ secrets.UPLOAD_KEYSTORE_BASE64 }}" | base64 -d > android/app/delulufy_key.jks
+      - name: Install dependencies
+        run: flutter pub get
 
-      - name: Create key.properties
-        run: |
-          echo "storeFile=delulufy_key.jks" > android/key.properties
-          echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" >> android/key.properties
-          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/key.properties
-          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
+      - name: Build unsigned APK
+        run: flutter build apk --debug
 
-      - name: Make Gradlew executable
-        run: chmod +x ./gradlew
-
-      - name: Build release APK
-        run: ./gradlew assembleRelease
-
-      - name: Upload APK
+      - name: Upload unsigned APK
         uses: actions/upload-artifact@v3
         with:
-          name: delulufy-release-apk
-          path: android/app/build/outputs/apk/release/app-release.apk
+          name: unsigned-apk
+          path: build/app/outputs/flutter-apk/app-debug.apk
